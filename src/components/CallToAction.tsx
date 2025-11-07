@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 const plans = [
   {
     name: "Free",
-    price: "$0",
+    price: "₹0",
     period: "forever",
     features: [
       "10 swipes per day",
@@ -17,7 +17,7 @@ const plans = [
   },
   {
     name: "Premium",
-    price: "$9.99",
+    price: "₹199",
     period: "per month",
     features: [
       "Unlimited swipes",
@@ -31,7 +31,7 @@ const plans = [
   },
   {
     name: "Premium Plus",
-    price: "$19.99",
+    price: "₹299",
     period: "per month",
     features: [
       "Everything in Premium",
