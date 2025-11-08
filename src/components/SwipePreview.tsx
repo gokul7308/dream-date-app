@@ -1,136 +1,94 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Heart, X, MapPin, Briefcase } from "lucide-react";
-import { useState } from "react";
-
-const profileCards = [
-  {
-    name: "Sarah",
-    age: 28,
-    location: "New York, NY",
-    occupation: "Product Designer",
-    interests: ["Travel", "Photography", "Yoga"],
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=600&fit=crop",
-  },
-  {
-    name: "Michael",
-    age: 32,
-    location: "Los Angeles, CA",
-    occupation: "Software Engineer",
-    interests: ["Hiking", "Gaming", "Cooking"],
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop",
-  },
-  {
-    name: "Emily",
-    age: 26,
-    location: "Chicago, IL",
-    occupation: "Marketing Manager",
-    interests: ["Art", "Wine", "Reading"],
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=600&fit=crop",
-  },
-];
+import { Smartphone } from "lucide-react";
 
 export const SwipePreview = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState<'left' | 'right' | null>(null);
-
-  const handleSwipe = (liked: boolean) => {
-    setDirection(liked ? 'right' : 'left');
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % profileCards.length);
-      setDirection(null);
-    }, 300);
-  };
-
-  const currentProfile = profileCards[currentIndex];
-
   return (
-    <section className="py-24 bg-background">
+    <section className="py-20 md:py-32 bg-gradient-to-b from-secondary/10 to-background">
       <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-16 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Swipe Your Way to <span className="bg-gradient-accent bg-clip-text text-transparent">Love</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Our unique card design makes browsing profiles a delightful experience
-          </p>
-        </div>
-
-        <div className="max-w-md mx-auto relative">
-          {/* Preview card stack effect */}
-          <div className="absolute inset-0 -z-10">
-            <Card className="absolute inset-0 bg-muted/50 -rotate-3 scale-95 blur-sm" />
-            <Card className="absolute inset-0 bg-muted/30 rotate-2 scale-[0.97] blur-sm" />
-          </div>
-
-          {/* Main profile card */}
-          <Card 
-            className={`relative overflow-hidden shadow-elevated transition-all duration-300 ${
-              direction === 'left' ? '-translate-x-full opacity-0 -rotate-12' : 
-              direction === 'right' ? 'translate-x-full opacity-0 rotate-12' : 
-              'translate-x-0 opacity-100 rotate-0'
-            }`}
-          >
-            {/* Profile Image */}
-            <div className="relative h-96 overflow-hidden">
-              <img 
-                src={currentProfile.image} 
-                alt={currentProfile.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Content */}
+            <div className="space-y-6 order-2 lg:order-1">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                Experience the
+                <span className="block text-primary">Future of Dating</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Our intuitive interface makes finding your perfect match effortless. Swipe through profiles, discover shared interests, and start meaningful conversations—all in a beautiful, modern design.
+              </p>
               
-              {/* Profile Info Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-2">
-                <h3 className="text-3xl font-bold">
-                  {currentProfile.name}, {currentProfile.age}
-                </h3>
-                <div className="flex items-center gap-2 text-sm">
-                  <MapPin className="w-4 h-4" />
-                  <span>{currentProfile.location}</span>
+              <div className="space-y-4 pt-4">
+                <div className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
+                    <div className="w-2 h-2 rounded-full bg-primary group-hover:bg-primary-foreground"></div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Intuitive Swiping</h4>
+                    <p className="text-sm text-muted-foreground">Swipe right to like, left to pass. It's that simple!</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Briefcase className="w-4 h-4" />
-                  <span>{currentProfile.occupation}</span>
+
+                <div className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
+                    <div className="w-2 h-2 rounded-full bg-primary group-hover:bg-primary-foreground"></div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Detailed Profiles</h4>
+                    <p className="text-sm text-muted-foreground">See photos, interests, and compatibility scores at a glance.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
+                    <div className="w-2 h-2 rounded-full bg-primary group-hover:bg-primary-foreground"></div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Instant Matches</h4>
+                    <p className="text-sm text-muted-foreground">When both like each other, start chatting immediately.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Interests */}
-            <div className="p-6 space-y-3">
-              <h4 className="font-semibold text-foreground">Interests</h4>
-              <div className="flex flex-wrap gap-2">
-                {currentProfile.interests.map((interest, idx) => (
-                  <span 
-                    key={idx}
-                    className="px-3 py-1 rounded-full bg-muted text-sm text-muted-foreground border border-border"
-                  >
-                    {interest}
-                  </span>
-                ))}
+            {/* Right side - Phone mockup */}
+            <div className="relative order-1 lg:order-2 flex justify-center">
+              <div className="relative animate-fade-in">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+                
+                {/* Phone frame */}
+                <div className="relative bg-gradient-to-br from-card to-card/80 rounded-[3rem] p-4 border-8 border-foreground/10 shadow-2xl w-80 h-[600px] hover:scale-105 transition-transform duration-500">
+                  {/* Screen content */}
+                  <div className="bg-gradient-to-br from-background to-secondary/20 rounded-[2.5rem] w-full h-full overflow-hidden relative">
+                    {/* Status bar */}
+                    <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-foreground/5 to-transparent"></div>
+                    
+                    {/* Profile card mockup */}
+                    <div className="absolute inset-8 top-16 bg-gradient-to-br from-primary/20 via-accent/10 to-background rounded-3xl border border-border shadow-xl flex flex-col justify-between p-6">
+                      <div className="flex-1 flex items-center justify-center">
+                        <Smartphone className="w-24 h-24 text-primary/30" />
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <div className="h-8 bg-foreground/10 rounded-full w-3/4"></div>
+                        <div className="h-4 bg-foreground/10 rounded-full w-1/2"></div>
+                        <div className="flex gap-2 pt-2">
+                          <div className="h-8 bg-primary/20 rounded-full flex-1"></div>
+                          <div className="h-8 bg-primary/20 rounded-full flex-1"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action buttons mockup */}
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-6">
+                      <div className="w-16 h-16 rounded-full bg-foreground/10 border-2 border-border animate-pulse"></div>
+                      <div className="w-20 h-20 rounded-full bg-primary shadow-lg animate-pulse" style={{ animationDelay: "0.2s" }}></div>
+                      <div className="w-16 h-16 rounded-full bg-foreground/10 border-2 border-border animate-pulse" style={{ animationDelay: "0.4s" }}></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Action Buttons */}
-            <div className="flex justify-center gap-6 p-6 pt-0">
-              <Button 
-                size="icon" 
-                variant="outline"
-                className="w-16 h-16 rounded-full shadow-card hover:shadow-elevated hover:scale-110 transition-all border-2"
-                onClick={() => handleSwipe(false)}
-              >
-                <X className="w-8 h-8 text-destructive" />
-              </Button>
-              <Button 
-                size="icon" 
-                variant="outline"
-                className="w-16 h-16 rounded-full shadow-card hover:shadow-elevated hover:scale-110 transition-all border-2"
-                onClick={() => handleSwipe(true)}
-              >
-                <Heart className="w-8 h-8 text-secondary" fill="currentColor" />
-              </Button>
-            </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>
