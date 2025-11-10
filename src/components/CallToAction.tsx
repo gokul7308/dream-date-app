@@ -1,134 +1,114 @@
-import { Check, Sparkles, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Check } from "lucide-react";
+
+const plans = [
+  {
+    name: "Free",
+    price: "₹0",
+    period: "forever",
+    features: [
+      "10 swipes per day",
+      "Basic matching",
+      "Limited messages",
+      "Profile customization",
+    ],
+    highlighted: false,
+  },
+  {
+    name: "Premium",
+    price: "₹199",
+    period: "per month",
+    features: [
+      "Unlimited swipes",
+      "Advanced matching",
+      "Unlimited messages",
+      "See who liked you",
+      "Priority support",
+      "Ad-free experience",
+    ],
+    highlighted: true,
+  },
+  {
+    name: "Premium Plus",
+    price: "₹299",
+    period: "per month",
+    features: [
+      "Everything in Premium",
+      "Profile boost",
+      "Super likes",
+      "Rewind feature",
+      "Travel mode",
+      "VIP badge",
+    ],
+    highlighted: false,
+  },
+];
 
 export const CallToAction = () => {
-  const plans = [
-    {
-      name: "Free",
-      price: "₹0",
-      period: "Limited to first 10 users",
-      features: [
-        "Create detailed profile",
-        "Basic matching algorithm",
-        "5 likes per day",
-        "Limited chat messages",
-        "Standard profile visibility",
-      ],
-      highlighted: false,
-      badge: "Limited Offer",
-    },
-    {
-      name: "Premium",
-      price: "₹499",
-      period: "/month",
-      features: [
-        "Everything in Free",
-        "Unlimited likes & swipes",
-        "See who liked you",
-        "Advanced matching filters",
-        "Unlimited messaging",
-        "Boost profile visibility",
-        "Rewind last swipe",
-        "Read receipts",
-        "Priority customer support",
-      ],
-      highlighted: true,
-      badge: "Most Popular",
-    },
-  ];
-
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-background to-secondary/10 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
+    <section className="py-24 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center space-y-4 mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Choose Your
-            <span className="block text-primary">Perfect Plan</span>
+            Choose Your <span className="bg-gradient-hero bg-clip-text text-transparent">Perfect Plan</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Start for free or unlock premium features to supercharge your dating experience.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Start free and upgrade anytime to unlock unlimited possibilities
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
-            <Card
+            <Card 
               key={index}
-              className={`relative p-8 md:p-10 transition-all duration-300 animate-fade-in ${
-                plan.highlighted
-                  ? "bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary shadow-2xl md:scale-105 hover:scale-110"
-                  : "bg-card hover:shadow-lg hover:-translate-y-1"
+              className={`p-8 space-y-6 relative overflow-hidden transition-all duration-300 hover:-translate-y-2 animate-slide-up ${
+                plan.highlighted 
+                  ? 'bg-gradient-hero border-primary shadow-elevated scale-105' 
+                  : 'bg-gradient-card border-border shadow-card'
               }`}
-              style={{ animationDelay: `${index * 0.2}s` }}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Badge */}
-              {plan.badge && (
-                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 ${
-                  plan.highlighted
-                    ? "bg-primary text-primary-foreground shadow-lg"
-                    : "bg-secondary text-secondary-foreground"
-                }`}>
-                  {plan.highlighted ? <Crown className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
-                  {plan.badge}
+              {plan.highlighted && (
+                <div className="absolute top-0 right-0 bg-secondary text-secondary-foreground px-4 py-1 text-sm font-semibold rounded-bl-lg">
+                  Popular
                 </div>
               )}
 
-              {/* Plan details */}
-              <div className="text-center mb-8 mt-4">
-                <h3 className={`text-2xl font-bold mb-2 ${plan.highlighted ? "text-primary" : ""}`}>
+              <div className="space-y-2">
+                <h3 className={`text-2xl font-bold ${plan.highlighted ? 'text-white' : 'text-foreground'}`}>
                   {plan.name}
                 </h3>
-                <div className="mb-2">
-                  <span className="text-5xl font-bold">{plan.price}</span>
-                  <span className="text-muted-foreground ml-1">{plan.period}</span>
+                <div className="flex items-baseline gap-1">
+                  <span className={`text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-foreground'}`}>
+                    {plan.price}
+                  </span>
+                  <span className={`text-sm ${plan.highlighted ? 'text-white/80' : 'text-muted-foreground'}`}>
+                    /{plan.period}
+                  </span>
                 </div>
               </div>
 
-              {/* Features list */}
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start gap-3">
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                      plan.highlighted ? "bg-primary/20" : "bg-primary/10"
-                    }`}>
-                      <Check className={`w-3 h-3 ${plan.highlighted ? "text-primary" : "text-primary"}`} />
-                    </div>
-                    <span className="text-sm leading-relaxed">{feature}</span>
+              <ul className="space-y-3">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-white' : 'text-primary'}`} />
+                    <span className={`text-sm ${plan.highlighted ? 'text-white/90' : 'text-muted-foreground'}`}>
+                      {feature}
+                    </span>
                   </li>
                 ))}
               </ul>
 
-              {/* CTA Button */}
-              <Button
+              <Button 
+                variant={plan.highlighted ? "secondary" : "outline"}
+                className="w-full"
                 size="lg"
-                className={`w-full text-lg ${
-                  plan.highlighted
-                    ? "bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl"
-                    : "bg-secondary hover:bg-secondary/80 text-secondary-foreground"
-                }`}
               >
-                {plan.highlighted ? "Get Premium Now" : "Start Free"}
+                {plan.name === "Free" ? "Get Started" : "Subscribe Now"}
               </Button>
-
-              {plan.highlighted && (
-                <p className="text-center text-sm text-muted-foreground mt-4">
-                  Cancel anytime • No hidden fees
-                </p>
-              )}
             </Card>
           ))}
-        </div>
-
-        {/* Additional info */}
-        <div className="text-center mt-12 text-muted-foreground text-sm">
-          <p>All plans include basic features and customer support</p>
         </div>
       </div>
     </section>
